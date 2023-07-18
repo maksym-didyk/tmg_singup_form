@@ -1,0 +1,100 @@
+.section {
+  width: 630px;
+  margin: auto;
+}
+
+.singupform {
+  font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+
+
+  display: flex;
+  flex-direction: column;
+
+  // @include onTablet {
+  //   max-width: 630px;
+  //   flex-direction: row;
+  //   flex-wrap: wrap;
+  //   justify-content: space-between;
+  //   gap: 10px;
+  // }
+
+  &:hover {
+    transition: 0.3s;
+  }
+
+  &__logo {
+    margin: auto;
+  }
+
+  &__link {
+    color: #6CEEC7;
+  }
+
+  &__header-text {
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+  }
+
+  &__login {
+    margin-top: auto;
+  }
+
+  &__agreement {
+    color: #E0E0E0;
+  }
+
+  &__footer-text {
+    font-family: Rubik;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 18px;
+    text-align: center;
+    color: #E0E0E0;
+  }
+}
+
+.input-icon {
+    padding-left: 40px;
+
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+
+  &-firstname {
+    background-image: url("../../images/icons/u_user.svg");
+  }
+
+  &-secondname {
+    background-image: url("../../images/icons/u_users-alt.svg");
+  }
+
+  &-country {
+    background-image: url("../../images/icons/u_map-marker-alt.svg");
+  }
+
+  &-phone {
+    background-image: url("../../images/icons/u_phone-alt.svg");
+  }
+
+  &-password {
+    background-image: url("../../images/icons/u_padlock.svg");
+  }
+
+  &-confirmPassword {
+    background-image: url("../../images/icons/u_padlock-alt.svg");
+  }
+
+  &-confirmPassword {
+    background-image: url("../../images/icons/u_padlock-alt.svg");
+  }
+
+  &-email {
+    background-image: url("../../images/icons/u_envelope.svg");
+  }
+}
