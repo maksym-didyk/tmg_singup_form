@@ -9,6 +9,8 @@ import { CustomInput } from './CustomInput';
 import { CustomSelect } from './CustomSelect';
 import { Footer } from './Footer';
 import { Header } from './Header';
+import { CheckboxMUI } from './CheckboxMUI';
+// import { CustomCheckbox } from './CustomCheckbox';
 
 export const SingUpForm = () => {
   const [firstname, setFirstname] = useState('');
@@ -19,6 +21,7 @@ export const SingUpForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<ErrorsType[]>([]);
+  const [checked, setChecked] = useState(false);
 
   const getCountryCode = (id: number) => {
     const countryIndex = listCountry.find(country => country.id === id);
@@ -36,10 +39,23 @@ export const SingUpForm = () => {
     setPassword('');
     setConfirmPassword('');
     setEmail('');
+    setChecked(false);
   };
 
   const isValidPassword = (pass: string) => /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])/.test(pass);
   const isValidEmail = (mail: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail);
+
+  const handleCheckedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(() => event.target.checked);
+
+    if (!!event.target.checked === false) {
+      setErrors(error => [...error, ErrorsType.checkbox]);
+    }
+
+    if (!!event.target.checked === true) {
+      setErrors(error => error.filter(val => val !== ErrorsType.checkbox));
+    }
+  };
 
   const handleFirstnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFirstname(event.target.value);
@@ -142,102 +158,114 @@ export const SingUpForm = () => {
       setErrors(error => [...error, ErrorsType.email]);
     }
 
+    if (checked === false) {
+      setErrors(error => [...error, ErrorsType.checkbox]);
+    }
+
     if (errors.length === 0) {
       clearForm();
     }
   };
 
   return (
-    <div className="singupform">
-      <Header />
+    <>
+      <div className="singupform">
+        <Header />
 
-      <form onSubmit={handleSubmit} className="">
-        <CustomInput
-          type="text"
-          name="firstname"
-          value={firstname}
-          placeholder="First Name"
-          errors={errors}
-          errorstype={ErrorsType.firstname}
-          onChange={handleFirstnameChange}
-        />
-
-        <CustomInput
-          type="text"
-          name="secondname"
-          value={secondname}
-          placeholder="Second Name"
-          errors={errors}
-          onChange={handleSecondnameChange}
-        />
-
-        <CustomSelect
-          id="country"
-          value={countryId}
-          errors={errors}
-          errorstype={ErrorsType.countryId}
-          onChange={handleCountryChange}
-        />
-
-        <CustomInput
-          type="tel"
-          name="phone"
-          value={phone}
-          placeholder="Phone"
-          errors={errors}
-          errorstype={ErrorsType.phone}
-          onChange={handlePhoneChange}
-        />
-
-        <CustomInput
-          type="password"
-          value={password}
-          placeholder="Password"
-          errors={errors}
-          errorstype={ErrorsType.password}
-          onChange={handlePasswordChange}
-        />
-
-        <CustomInput
-          type="password"
-          name="confirmPassword"
-          value={confirmPassword}
-          placeholder="Confirm password"
-          errors={errors}
-          errorstype={ErrorsType.confirmPassword}
-          onChange={handleConfirmPasswordChange}
-        />
-
-        <CustomInput
-          type="email"
-          value={email}
-          placeholder="E-mail"
-          errors={errors}
-          errorstype={ErrorsType.email}
-          onChange={handleEmailChange}
-        />
-
-        <div className="field">
-          <input
-            type="checkbox"
-            name="terms"
+        <form onSubmit={handleSubmit} className="singupform__form">
+          <CustomInput
+            type="text"
+            name="firstname"
+            value={firstname}
+            placeholder="First Name"
+            errors={errors}
+            errorstype={ErrorsType.firstname}
+            onChange={handleFirstnameChange}
           />
-          I agree to the
-          <a href="/#" className="singupform__link">Terms & Conditions</a>
 
-        </div>
+          <CustomInput
+            type="text"
+            name="secondname"
+            value={secondname}
+            placeholder="Second Name"
+            errors={errors}
+            onChange={handleSecondnameChange}
+          />
 
-        <div className="control">
-          <button
-            type="submit"
-            className="button is-primary"
+          <CustomSelect
+            id="country"
+            value={countryId}
+            errors={errors}
+            errorstype={ErrorsType.countryId}
+            onChange={handleCountryChange}
+          />
+
+          <CustomInput
+            type="tel"
+            name="phone"
+            value={phone}
+            placeholder="Phone"
+            errors={errors}
+            errorstype={ErrorsType.phone}
+            onChange={handlePhoneChange}
+          />
+
+          <CustomInput
+            type="password"
+            value={password}
+            placeholder="Password"
+            errors={errors}
+            errorstype={ErrorsType.password}
+            onChange={handlePasswordChange}
+          />
+
+          <CustomInput
+            type="password"
+            name="confirmPassword"
+            value={confirmPassword}
+            placeholder="Confirm password"
+            errors={errors}
+            errorstype={ErrorsType.confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+
+          <CustomInput
+            type="email"
+            value={email}
+            placeholder="E-mail"
+            errors={errors}
+            errorstype={ErrorsType.email}
+            onChange={handleEmailChange}
+          />
+
+          <div
+            className="field"
+            style={{
+              display: 'flex', alignSelf: 'start', alignItems: 'center', flexDirection: 'row', flexWrap: 'nowrap', gap: '0px', justifyContent: 'start',
+            }}
           >
-            Sing Up
-          </button>
-        </div>
-      </form>
+            <CheckboxMUI cheked={checked} errors={errors} onChange={handleCheckedChange} />
 
-      <Footer />
-    </div>
+            <span>
+              I agree to the
+              {' '}
+              <a href="/#" className="singupform__link">Terms & Conditions</a>
+
+            </span>
+          </div>
+
+          <div className="field">
+            <button
+              type="submit"
+              className="singupform__button"
+            >
+              Sing Up
+            </button>
+          </div>
+        </form>
+
+        <Footer />
+      </div>
+    </>
   );
 };

@@ -8,7 +8,9 @@ export const Header = () => {
         <img src={imgLogo} alt="BestRest Logo" />
       </div>
       <div className="singupform__header-text">
-        Sign Up and find the best place to rest while traveling
+        <span className="singupform__accent-color">Sign Up</span>
+        {' '}
+        and find the best place to rest while traveling
       </div>
     </>
   );

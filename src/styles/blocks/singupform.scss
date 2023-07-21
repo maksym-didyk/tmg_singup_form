@@ -1,44 +1,105 @@
+body {
+  background-image: url("../../images/bg-xs.png");
+  background-size: cover;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+  color: #fff;
+
+
+  @include onTablet {
+    background-image: url("../../images/bg-cover.jpg");
+  }
+}
+
 .section {
-  width: 630px;
-  margin: auto;
+  padding: 0;
+
+  @include onTablet {
+    position: relative;
+    height: 100vh;
+  }
 }
 
 .singupform {
-  font-family: 'Rubik', sans-serif;
-  font-size: 15px;
-  font-weight: 300;
-
-
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  width: 100%;
+  padding: 0 24px;
 
-  // @include onTablet {
-  //   max-width: 630px;
-  //   flex-direction: row;
-  //   flex-wrap: wrap;
-  //   justify-content: space-between;
-  //   gap: 10px;
-  // }
+  @include onTablet {
+    position: absolute;
+    padding: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Rubik', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    width: 630px;
+  }
 
-  &:hover {
-    transition: 0.3s;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include onTablet {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      flex-basis: 50%;
+      align-items: start;
+      align-content: start;
+    }
   }
 
   &__logo {
-    margin: auto;
+    display: flex;
+    align-self: center;
+    visibility: hidden;
+    
+    @include onTablet {
+      visibility: visible;
+    }
+  }
+
+  &__accent-color {
+    color: $accent-color;
   }
 
   &__link {
-    color: #6CEEC7;
+    color: $accent-color;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+
+    &:hover {
+      color: $accent-color;
+      text-decoration: none;
+    }
   }
 
   &__header-text {
     font-family: 'Rubik', sans-serif;
-    font-size: 24px;
+    font-size: 19px;
     font-weight: 500;
     line-height: 28px;
     text-align: center;
     color: #fff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    @include onTablet {
+      font-size: 24px;
+      margin-bottom: 55px;
+    }
   }
 
   &__login {
@@ -49,22 +110,121 @@
     color: #E0E0E0;
   }
 
-  &__footer-text {
+  &__input {
+    height: 56px;
+    width: 100%;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+
     font-family: Rubik;
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 300;
-    line-height: 18px;
-    text-align: center;
-    color: #E0E0E0;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: $secondary-color;
+    transition: all $transition-time;
+
+    @include onTablet {
+      width: 300px;
+    }
+
+    &::placeholder {
+      font-family: Rubik;
+      font-size: 19px;
+      font-weight: 300;
+      line-height: 23px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: $secondary-color;
+    }
+
+    &:hover {
+      border: 1px solid $accent-color;
+    }
+
+    &:focus {
+      border: 1px solid $accent-color;
+    }
   }
+
+  &__select {
+    background-image: url('../../images/icons/u_angle-right-b.svg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 40px;
+    /* Додатковий відступ для стрілки */
+  }
+
+  &____checkbox {
+    align-self: baseline;
+  }
+
+  &__button {
+    border: 1px solid $accent-color;
+    border-radius: 4px;
+    font-family: Rubik;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: #000;
+    height: 56px;
+    width: 100%;
+    cursor: pointer;
+    background-color: $accent-color;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all $transition-time;
+    margin-top: 53px; 
+
+    @include onTablet {
+      width: 165px;
+      margin: 0;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0);
+      color: $accent-color;
+    }
+
+    &:focus {
+      background-color: rgba(0, 0, 0, 0);
+      color: $accent-color;
+    }
+  }
+
+  &__errors-hidden {
+    visibility: hidden;
+  }
+
+  &__footer {
+    margin: 60px 0; 
+
+    @include onTablet {
+      margin-bottom: 0;
+    }
+
+    &-text {
+      font-family: Rubik;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 18px;
+      text-align: center;
+      color: #E0E0E0;
+    }
+  } 
 }
 
 .input-icon {
-    padding-left: 40px;
-
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: 10px center;
+  padding-left: 40px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
 
   &-firstname {
     background-image: url("../../images/icons/u_user.svg");

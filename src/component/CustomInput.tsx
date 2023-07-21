@@ -28,23 +28,24 @@ export const CustomInput: FC<Props> = ({
 
   return (
     <div className="field">
-      <div className="control">
+      <div className="">
         <input
           type={type}
           name={displayName}
           className={classNames({
-            [`input is-success input-icon input-icon-${displayName}`]: true,
+            [`singupform__input input-icon input-icon-${displayName}`]: true,
           })}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
         />
       </div>
-      {errors.includes(displayErrorsType) && (
-        <p className="help is-danger">
-          {displayErrorsType}
-        </p>
-      )}
+      <p className={classNames('help is-danger', {
+        'singupform__errors-hidden': !errors.includes(displayErrorsType),
+      })}
+      >
+        {displayErrorsType}
+      </p>
     </div>
   );
 };

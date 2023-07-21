@@ -4,11 +4,9 @@ import { SingUpForm } from './component/SingUpForm';
 
 export const App: React.FC = () => {
   return (
-    <>
-      <div className="section">
-        <SingUpForm />
-      </div>
-    </>
+    <div className="section">
+      <SingUpForm />
+    </div>
 
   );
 };

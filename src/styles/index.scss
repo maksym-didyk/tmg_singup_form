@@ -13,10 +13,7 @@ iframe {
   display: none;
 }
 
-body {
-  background-image: url("../images/bg-cover.jpg");
-  background-size: cover;
-}
+
 
 @import "./utils/mixins";
 @import "./utils/variables";
